@@ -6,364 +6,605 @@
 <title>FinGuard AI</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #172033;
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fb;
+color:#172033;
 }
 
-header {
-  background: #101c3d;
-  color: white;
-  padding: 20px;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+.hidden{
+display:none!important;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: bold;
+button{
+cursor:pointer;
 }
 
-.tagline {
-  margin-top: 6px;
-  font-size: 13px;
-  opacity: .8;
+.auth{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+background:linear-gradient(135deg,#0d1735,#243d78);
 }
 
-nav {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  margin-top: 18px;
+.auth-box{
+background:white;
+width:100%;
+max-width:420px;
+padding:30px;
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,.25);
 }
 
-nav button {
-  border: 0;
-  padding: 9px 13px;
-  border-radius: 20px;
-  background: #26365f;
-  color: white;
-  white-space: nowrap;
+.logo{
+font-size:25px;
+font-weight:bold;
+color:#101c3d;
+margin-bottom:8px;
 }
 
-nav button.active {
-  background: #20c997;
+.tagline{
+font-size:13px;
+color:#687386;
+margin-bottom:25px;
 }
 
-main {
-  max-width: 1100px;
-  margin: auto;
-  padding: 25px 16px 60px;
+.auth-box h2{
+margin-bottom:20px;
 }
 
-.page {
-  display: none;
+input,select{
+width:100%;
+padding:12px;
+border:1px solid #ccd3df;
+border-radius:9px;
+margin:7px 0 14px;
 }
 
-.page.active {
-  display: block;
+label{
+font-weight:bold;
+font-size:14px;
 }
 
-.hero {
-  background: linear-gradient(135deg,#101c3d,#263f78);
-  color: white;
-  padding: 35px 22px;
-  border-radius: 20px;
-  margin-bottom: 22px;
+.btn{
+width:100%;
+padding:13px;
+border:0;
+border-radius:9px;
+font-weight:bold;
+margin-top:8px;
 }
 
-.hero h1 {
-  font-size: 34px;
-  margin-bottom: 10px;
+.primary{
+background:#16b982;
+color:white;
 }
 
-.hero p {
-  line-height: 1.6;
-  opacity: .9;
+.dark{
+background:#101c3d;
+color:white;
 }
 
-button.primary {
-  background: #20c997;
-  color: white;
-  border: 0;
-  padding: 12px 18px;
-  border-radius: 10px;
-  margin-top: 18px;
-  font-weight: bold;
+.link{
+color:#0878d1;
+font-weight:bold;
+cursor:pointer;
+text-align:center;
+margin-top:16px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-  gap: 15px;
-  margin: 18px 0;
+header{
+background:#101c3d;
+color:white;
+padding:18px;
+position:sticky;
+top:0;
+z-index:20;
 }
 
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 3px 15px rgba(0,0,0,.06);
+.header-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-.card h3 {
-  margin-bottom: 8px;
+.header-logo{
+font-size:22px;
+font-weight:bold;
 }
 
-.number {
-  font-size: 30px;
-  font-weight: bold;
-  color: #101c3d;
+.logout{
+background:#ef5350;
+border:0;
+color:white;
+padding:8px 12px;
+border-radius:8px;
 }
 
-.good {
-  color: #149447;
+nav{
+display:flex;
+gap:8px;
+overflow-x:auto;
+margin-top:15px;
 }
 
-.warn {
-  color: #c77b00;
+nav button{
+border:0;
+background:#27365f;
+color:white;
+padding:9px 13px;
+border-radius:20px;
+white-space:nowrap;
 }
 
-.bad {
-  color: #c0392b;
+nav button.active{
+background:#16b982;
 }
 
-.section-title {
-  margin: 25px 0 12px;
+main{
+max-width:1100px;
+margin:auto;
+padding:25px 16px 60px;
 }
 
-.bar {
-  height: 10px;
-  background: #e6eaf0;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 8px 0 15px;
+.page{
+display:none;
 }
 
-.fill {
-  height: 100%;
-  background: #20c997;
+.page.active{
+display:block;
 }
 
-form {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
+.hero{
+background:linear-gradient(135deg,#101c3d,#29447f);
+color:white;
+padding:35px 22px;
+border-radius:20px;
+margin-bottom:22px;
 }
 
-label {
-  display: block;
-  margin-top: 14px;
-  font-weight: bold;
+.hero h1{
+font-size:34px;
+margin-bottom:10px;
 }
 
-input, select {
-  width: 100%;
-  padding: 11px;
-  margin-top: 6px;
-  border: 1px solid #ccd3df;
-  border-radius: 8px;
+.hero p{
+line-height:1.6;
+opacity:.9;
 }
 
-.demo-buttons {
-  display: grid;
-  gap: 10px;
-  margin-top: 15px;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+margin:18px 0;
 }
 
-.demo-buttons button,
-.action {
-  border: 0;
-  padding: 13px;
-  border-radius: 9px;
-  background: #101c3d;
-  color: white;
-  font-weight: bold;
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 3px 15px rgba(0,0,0,.06);
+margin-bottom:15px;
 }
 
-.status {
-  display: inline-block;
-  padding: 7px 12px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 13px;
+.card h2,.card h3{
+margin-bottom:10px;
 }
 
-.green {
-  background: #d8f7e8;
-  color: #08753b;
+.number{
+font-size:30px;
+font-weight:bold;
+color:#101c3d;
 }
 
-.amber {
-  background: #fff0c9;
-  color: #986100;
+.good{
+color:#149447;
 }
 
-.red {
-  background: #ffe0df;
-  color: #a52620;
+.warn{
+color:#b87500;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  margin-top: 15px;
+.bad{
+color:#c0392b;
 }
 
-th, td {
-  padding: 12px 8px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
-  font-size: 13px;
+.bar{
+height:10px;
+background:#e6eaf0;
+border-radius:10px;
+overflow:hidden;
+margin:7px 0 15px;
 }
 
-.simulator {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
+.fill{
+height:100%;
+background:#16b982;
 }
 
-input[type="range"] {
-  accent-color: #20c997;
+.status{
+display:inline-block;
+padding:7px 12px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
 }
 
-.result {
-  background: #eefaf6;
-  padding: 20px;
-  border-radius: 12px;
-  margin-top: 15px;
+.green{
+background:#d9f7e8;
+color:#08753b;
 }
 
-.disclaimer {
-  background: #fff8df;
-  padding: 15px;
-  border-left: 4px solid #e0a800;
-  border-radius: 8px;
-  margin-top: 20px;
-  line-height: 1.5;
-  font-size: 14px;
+.amber{
+background:#fff0c9;
+color:#986100;
 }
 
-ul {
-  padding-left: 20px;
-  line-height: 1.9;
+.red{
+background:#ffe0df;
+color:#a52620;
 }
 
-footer {
-  text-align: center;
-  padding: 25px;
-  color: #667085;
-  font-size: 13px;
+.action{
+background:#101c3d;
+color:white;
+border:0;
+padding:12px 15px;
+border-radius:8px;
+margin-top:10px;
 }
 
-@media(max-width:600px) {
-  .hero h1 {
-    font-size: 28px;
-  }
+.result{
+background:#edf9f5;
+padding:20px;
+border-radius:12px;
+margin-top:15px;
+}
 
-  table {
-    display: block;
-    overflow-x: auto;
-  }
+.disclaimer{
+background:#fff7dc;
+padding:15px;
+border-left:4px solid #e0a800;
+border-radius:8px;
+margin-top:15px;
+font-size:13px;
+line-height:1.6;
+}
+
+ul{
+padding-left:20px;
+line-height:1.9;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+}
+
+th,td{
+padding:12px 8px;
+border-bottom:1px solid #eee;
+text-align:left;
+font-size:13px;
+}
+
+.table-wrap{
+overflow-x:auto;
+}
+
+.profile-box{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+}
+
+footer{
+text-align:center;
+padding:25px;
+color:#667085;
+font-size:13px;
+}
+
+@media(max-width:600px){
+.hero h1{
+font-size:27px;
+}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">🛡️ FIN GUARD AI</div>
-  <div class="tagline">
-    Understand what happened. Understand why. Know what to do next.
-  </div>
+<!-- LOGIN -->
 
-  <nav>
-    <button class="active" onclick="showPage('dashboard',this)">Dashboard</button>
-    <button onclick="showPage('credit',this)">Credit</button>
-    <button onclick="showPage('simulator',this)">Simulator</button>
-    <button onclick="showPage('transactions',this)">Transactions</button>
-    <button onclick="showPage('action',this)">Action Center</button>
-    <button onclick="showPage('privacy',this)">Privacy</button>
-  </nav>
+<div id="loginPage" class="auth">
+
+<div class="auth-box">
+
+<div class="logo">🛡️ FIN GUARD AI</div>
+
+<div class="tagline">
+Understand what happened. Understand why. Know what to do next.
+</div>
+
+<h2>Welcome Back</h2>
+
+<label>Email</label>
+<input id="loginEmail" type="email" placeholder="Enter email">
+
+<label>Password</label>
+<input id="loginPassword" type="password" placeholder="Enter password">
+
+<button class="btn primary" onclick="login()">
+Login
+</button>
+
+<button class="btn dark" onclick="demoLogin()">
+Enter Demo
+</button>
+
+<div class="link" onclick="showSignup()">
+New user? Create an account
+</div>
+
+</div>
+</div>
+
+
+<!-- SIGN UP -->
+
+<div id="signupPage" class="auth hidden">
+
+<div class="auth-box">
+
+<div class="logo">🛡️ FIN GUARD AI</div>
+
+<h2>Create Account</h2>
+
+<label>Full Name</label>
+<input id="signupName" placeholder="Enter your name">
+
+<label>Email</label>
+<input id="signupEmail" type="email" placeholder="Enter email">
+
+<label>Password</label>
+<input id="signupPassword" type="password" placeholder="Create password">
+
+<label>
+<input id="consent" type="checkbox" style="width:auto">
+ I agree to the demo privacy notice.
+</label>
+
+<button class="btn primary" onclick="signup()">
+Sign Up
+</button>
+
+<div class="link" onclick="showLogin()">
+Already have an account? Login
+</div>
+
+</div>
+</div>
+
+
+<!-- APPLICATION -->
+
+<div id="app" class="hidden">
+
+<header>
+
+<div class="header-top">
+
+<div class="header-logo">
+🛡️ FIN GUARD AI
+</div>
+
+<button class="logout" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+<div style="font-size:12px;margin-top:5px;opacity:.8">
+Explainable Financial Intelligence & Protection Platform
+</div>
+
+<nav>
+
+<button class="active" onclick="showPage('dashboard',this)">
+Dashboard
+</button>
+
+<button onclick="showPage('profile',this)">
+Profile
+</button>
+
+<button onclick="showPage('credit',this)">
+Credit
+</button>
+
+<button onclick="showPage('simulator',this)">
+What-If
+</button>
+
+<button onclick="showPage('transactions',this)">
+Transactions
+</button>
+
+<button onclick="showPage('action',this)">
+Action Center
+</button>
+
+<button onclick="showPage('privacy',this)">
+Privacy
+</button>
+
+</nav>
+
 </header>
 
+
 <main>
+
 
 <!-- DASHBOARD -->
 
 <section id="dashboard" class="page active">
 
-  <div class="hero">
-    <h1>FinGuard AI</h1>
-    <p>
-      Explainable financial intelligence that helps you understand
-      your financial profile, credit readiness and unexpected transactions.
-    </p>
+<div class="hero">
 
-    <button class="primary" onclick="loadRahul()">
-      Explore Rahul Demo
-    </button>
-  </div>
+<h1>FinGuard AI</h1>
 
-  <h2 class="section-title">Financial Overview</h2>
+<p>
+Understand your financial profile, credit readiness
+and unexpected transactions through simple explanations.
+</p>
 
-  <div class="grid">
+<button class="btn primary" onclick="loadRahul()">
+Load Rahul Demo
+</button>
 
-    <div class="card">
-      <h3>Credit Readiness</h3>
-      <div class="number" id="score">72 / 100</div>
-      <p class="warn">Developing</p>
-    </div>
+</div>
 
-    <div class="card">
-      <h3>Payment Consistency</h3>
-      <div class="number good">94%</div>
-    </div>
+<h2>Financial Overview</h2>
 
-    <div class="card">
-      <h3>Savings Consistency</h3>
-      <div class="number">78%</div>
-    </div>
+<div class="grid">
 
-    <div class="card">
-      <h3>Debt-to-Income</h3>
-      <div class="number">32%</div>
-    </div>
+<div class="card">
+<h3>Credit Readiness</h3>
+<div class="number" id="dashScore">72 / 100</div>
+<p class="warn">Developing</p>
+</div>
 
-  </div>
+<div class="card">
+<h3>Payment Consistency</h3>
+<div class="number good">94%</div>
+</div>
 
-  <div class="card">
-    <h2>Positive Financial Signals</h2>
-    <ul>
-      <li>Stable income</li>
-      <li>Consistent payments</li>
-      <li>Regular savings</li>
-    </ul>
-  </div>
+<div class="card">
+<h3>Savings Consistency</h3>
+<div class="number">78%</div>
+</div>
 
-  <div class="card" style="margin-top:15px">
-    <h2>Attention Areas</h2>
-    <ul>
-      <li>Limited formal credit history</li>
-      <li>Moderate debt burden</li>
-      <li>One transaction requires verification</li>
-    </ul>
-  </div>
+<div class="card">
+<h3>Debt-to-Income</h3>
+<div class="number">32%</div>
+</div>
 
-  <div class="disclaimer">
-    <b>Responsible AI:</b>
-    FinGuard AI provides illustrative decision-support insights.
-    It does not approve or reject loans and does not definitively determine fraud.
-  </div>
+</div>
+
+
+<div class="card">
+
+<h2>Positive Financial Signals</h2>
+
+<ul>
+<li>Stable income</li>
+<li>Consistent EMI payments</li>
+<li>Strong utility payment history</li>
+<li>Regular savings behavior</li>
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h2>Attention Areas</h2>
+
+<ul>
+<li>Limited formal credit history</li>
+<li>Moderate debt burden</li>
+<li>One transaction requires verification</li>
+</ul>
+
+</div>
+
+
+<div class="disclaimer">
+
+<b>Responsible AI:</b>
+
+FinGuard AI provides illustrative financial
+decision-support insights. It does not approve
+or reject loans and does not definitively determine fraud.
+
+</div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section id="profile" class="page">
+
+<h1>Financial Profile</h1>
+
+<div class="card">
+
+<h2 id="userName">
+Rahul
+</h2>
+
+<p>Unified financial profile</p>
+
+</div>
+
+<div class="profile-box">
+
+<div class="card">
+<h3>Income Stability</h3>
+<div class="number">84%</div>
+</div>
+
+<div class="card">
+<h3>Payment Consistency</h3>
+<div class="number">94%</div>
+</div>
+
+<div class="card">
+<h3>Savings Behavior</h3>
+<div class="number">78%</div>
+</div>
+
+<div class="card">
+<h3>Debt Management</h3>
+<div class="number">68%</div>
+</div>
+
+<div class="card">
+<h3>Credit History</h3>
+<div class="number">42%</div>
+</div>
+
+<div class="card">
+<h3>Transaction Safety</h3>
+<div class="number">88%</div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Profile Summary</h2>
+
+<p>
+Your strongest indicators are stable income and
+consistent payments. Your primary improvement
+area is limited formal credit history.
+</p>
+
+</div>
 
 </section>
 
@@ -372,86 +613,132 @@ footer {
 
 <section id="credit" class="page">
 
-  <h1>Credit Readiness</h1>
+<h1>Credit Readiness</h1>
 
-  <div class="grid">
+<div class="grid">
 
-    <div class="card">
-      <h3>Illustrative Readiness</h3>
-      <div class="number" id="creditScore">72 / 100</div>
-      <p>Developing</p>
-    </div>
+<div class="card">
 
-    <div class="card">
-      <h3>Income Stability</h3>
-      <div class="number good">84%</div>
-    </div>
+<h3>Illustrative Readiness</h3>
 
-    <div class="card">
-      <h3>Payment Consistency</h3>
-      <div class="number good">94%</div>
-    </div>
+<div class="number" id="creditScore">
+72 / 100
+</div>
 
-  </div>
+<p class="warn">Developing</p>
 
-  <div class="card">
+</div>
 
-    <h2>Why did I get this result?</h2>
+<div class="card">
 
-    <h3 class="good">Positive Factors</h3>
+<h3>Income Stability</h3>
 
-    <p>Stable income</p>
-    <div class="bar"><div class="fill" style="width:85%"></div></div>
+<div class="number good">
+84%
+</div>
 
-    <p>Payment consistency</p>
-    <div class="bar"><div class="fill" style="width:94%"></div></div>
+</div>
 
-    <p>Savings behavior</p>
-    <div class="bar"><div class="fill" style="width:78%"></div></div>
+<div class="card">
 
-    <h3 class="warn">Attention Factors</h3>
+<h3>Payment Consistency</h3>
 
-    <p>Limited credit history</p>
-    <div class="bar"><div class="fill" style="width:42%"></div></div>
+<div class="number good">
+94%
+</div>
 
-    <p>Moderate debt burden</p>
-    <div class="bar"><div class="fill" style="width:55%"></div></div>
+</div>
 
-  </div>
+</div>
 
-  <div class="card" style="margin-top:15px">
 
-    <h2>Loan Assessment Scenario</h2>
+<div class="card">
 
-    <p><b>Applicant:</b> Rahul</p>
-    <p><b>Monthly Income:</b> ₹60,000</p>
-    <p><b>ITR History:</b> Limited / inconsistent</p>
-    <p><b>Credit History:</b> Limited</p>
-    <p><b>EMI Consistency:</b> 100%</p>
-    <p><b>Utility Consistency:</b> 96%</p>
+<h2>Why did I get this result?</h2>
 
-    <h3 class="section-title">Traditional Visibility</h3>
+<h3 class="good">
+Positive Factors
+</h3>
 
-    <p>
-      Limited formal financial history may reduce visibility into
-      the applicant's overall financial behavior.
-    </p>
+<p>Stable income</p>
+<div class="bar">
+<div class="fill" style="width:85%"></div>
+</div>
 
-    <h3 class="section-title">Broader Financial Profile</h3>
+<p>Payment consistency</p>
+<div class="bar">
+<div class="fill" style="width:94%"></div>
+</div>
 
-    <ul>
-      <li>Stable income</li>
-      <li>Consistent payments</li>
-      <li>Regular utility payments</li>
-      <li>Savings behavior</li>
-    </ul>
+<p>Savings behavior</p>
+<div class="bar">
+<div class="fill" style="width:78%"></div>
+</div>
 
-  </div>
+<h3 class="warn">
+Attention Factors
+</h3>
 
-  <div class="disclaimer">
-    <b>Illustrative / Prototype Credit Readiness Estimate.</b>
-    This is not an official credit score and is not a loan approval prediction.
-  </div>
+<p>Limited credit history</p>
+<div class="bar">
+<div class="fill" style="width:42%"></div>
+</div>
+
+<p>Moderate debt burden</p>
+<div class="bar">
+<div class="fill" style="width:55%"></div>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Loan Assessment Scenario</h2>
+
+<p><b>Applicant:</b> Rahul</p>
+<p><b>Age:</b> 28</p>
+<p><b>Employment:</b> Self-employed</p>
+<p><b>Monthly Income:</b> ₹60,000</p>
+<p><b>ITR History:</b> Limited / inconsistent</p>
+<p><b>Credit History:</b> Limited</p>
+<p><b>Rent:</b> ₹15,000</p>
+<p><b>Existing EMI:</b> ₹8,000</p>
+<p><b>EMI Consistency:</b> 100%</p>
+<p><b>Utility Consistency:</b> 96%</p>
+<p><b>Savings Consistency:</b> 78%</p>
+
+<br>
+
+<h3>Traditional Visibility</h3>
+
+<p>
+Limited formal financial history may reduce visibility
+into the applicant's overall financial behavior.
+</p>
+
+<br>
+
+<h3>Broader Financial Profile</h3>
+
+<ul>
+<li>Stable income</li>
+<li>Consistent payments</li>
+<li>Regular utility payments</li>
+<li>Savings behavior</li>
+</ul>
+
+</div>
+
+
+<div class="disclaimer">
+
+<b>Illustrative / Prototype Credit Readiness Estimate.</b>
+
+This is not an official credit score and is not
+a loan approval prediction.
+
+</div>
 
 </section>
 
@@ -460,63 +747,86 @@ footer {
 
 <section id="simulator" class="page">
 
-  <h1>What-If Financial Simulator</h1>
+<h1>What-If Financial Simulator</h1>
 
-  <p>
-    Explore how changing financial factors can affect the
-    illustrative readiness estimate.
-  </p>
+<p>
+Explore how financial changes can affect the
+illustrative readiness estimate.
+</p>
 
-  <div class="simulator">
+<div class="card">
 
-    <h2>Current</h2>
+<h2>Current</h2>
 
-    <div class="number" id="simScore">72 / 100</div>
+<div class="number">
+72 / 100
+</div>
 
-    <label>
-      Monthly Debt
-      <input id="debt" type="range"
-             min="5000" max="30000"
-             value="15000"
-             oninput="simulate()">
-      <span id="debtValue">₹15,000</span>
-    </label>
+<label>
+Monthly Debt
+</label>
 
-    <label>
-      Savings Rate
-      <input id="savings" type="range"
-             min="5" max="50"
-             value="20"
-             oninput="simulate()">
-      <span id="savingValue">20%</span>
-    </label>
+<input id="debt"
+type="range"
+min="5000"
+max="30000"
+value="15000"
+oninput="simulate()">
 
-    <label>
-      Payment Consistency
-      <input id="payment" type="range"
-             min="60" max="100"
-             value="94"
-             oninput="simulate()">
-      <span id="paymentValue">94%</span>
-    </label>
+<p id="debtValue">₹15,000</p>
 
-    <div class="result">
 
-      <h2>Simulated Result</h2>
+<label>
+Savings Rate
+</label>
 
-      <div class="number" id="projected">72 / 100</div>
+<input id="savings"
+type="range"
+min="5"
+max="50"
+value="20"
+oninput="simulate()">
 
-      <p id="changeText">
-        Adjust the sliders to explore a scenario.
-      </p>
+<p id="savingValue">20%</p>
 
-    </div>
 
-  </div>
+<label>
+Payment Consistency
+</label>
 
-  <div class="disclaimer">
-    Projected estimate — not a guaranteed future credit score or loan approval.
-  </div>
+<input id="payment"
+type="range"
+min="60"
+max="100"
+value="94"
+oninput="simulate()">
+
+<p id="paymentValue">94%</p>
+
+
+<div class="result">
+
+<h2>Projected Estimate</h2>
+
+<div class="number" id="projected">
+72 / 100
+</div>
+
+<p id="changeText">
+Adjust the sliders to explore.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="disclaimer">
+
+Projected estimate — not a guaranteed future
+credit score or loan approval.
+
+</div>
 
 </section>
 
@@ -525,85 +835,91 @@ footer {
 
 <section id="transactions" class="page">
 
-  <h1>Transaction Intelligence</h1>
+<h1>Transaction Intelligence</h1>
 
-  <div class="card">
+<div class="card table-wrap">
 
-    <table>
+<table>
 
-      <tr>
-        <th>Date</th>
-        <th>Merchant</th>
-        <th>Amount</th>
-        <th>Status</th>
-      </tr>
+<tr>
+<th>Date</th>
+<th>Merchant</th>
+<th>Amount</th>
+<th>Status</th>
+</tr>
 
-      <tr>
-        <td>12 Aug</td>
-        <td>XYZ Services</td>
-        <td>₹4,999</td>
-        <td>
-          <span class="status amber">
-            Needs Verification
-          </span>
-        </td>
-      </tr>
+<tr>
+<td>12 Aug</td>
+<td>XYZ Services</td>
+<td>₹4,999</td>
+<td>
+<span class="status amber">
+Needs Verification
+</span>
+</td>
+</tr>
 
-      <tr>
-        <td>10 Aug</td>
-        <td>Electricity Board</td>
-        <td>₹1,240</td>
-        <td>
-          <span class="status green">
-            Recognized
-          </span>
-        </td>
-      </tr>
+<tr>
+<td>10 Aug</td>
+<td>Electricity Board</td>
+<td>₹1,240</td>
+<td>
+<span class="status green">
+Recognized
+</span>
+</td>
+</tr>
 
-      <tr>
-        <td>08 Aug</td>
-        <td>ABC Bank EMI</td>
-        <td>₹8,000</td>
-        <td>
-          <span class="status green">
-            Recognized
-          </span>
-        </td>
-      </tr>
+<tr>
+<td>08 Aug</td>
+<td>ABC Bank EMI</td>
+<td>₹8,000</td>
+<td>
+<span class="status green">
+Recognized
+</span>
+</td>
+</tr>
 
-    </table>
+</table>
 
-  </div>
+</div>
 
-  <div class="card" style="margin-top:15px">
 
-    <h2>Unexpected Debit Analysis</h2>
+<div class="card">
 
-    <p><b>Amount:</b> ₹4,999</p>
-    <p><b>Merchant:</b> XYZ Services</p>
-    <p><b>Type:</b> Auto Debit</p>
-    <p><b>Merchant Recognition:</b> Not recognized</p>
-    <p><b>Previous Similar Transaction:</b> Not found</p>
-    <p><b>Amount Deviation:</b> High</p>
-    <p><b>Pattern Match:</b> Low</p>
+<h2>Unexpected Debit Analysis</h2>
 
-    <br>
+<p><b>Amount:</b> ₹4,999</p>
+<p><b>Merchant:</b> XYZ Services</p>
+<p><b>Type:</b> Auto Debit</p>
+<p><b>New Merchant:</b> Yes</p>
+<p><b>Previous Similar Transaction:</b> Not found</p>
+<p><b>Amount Deviation:</b> High</p>
+<p><b>Pattern Match:</b> Low</p>
 
-    <span class="status amber">
-      AMBER — NEEDS VERIFICATION
-    </span>
+<br>
 
-    <p style="margin-top:15px">
-      This transaction appears to be an automated debit,
-      but it does not match a recognized recurring payment
-      pattern in the available demo history.
-    </p>
+<span class="status amber">
+AMBER — NEEDS VERIFICATION
+</span>
 
-  </div>
+<br><br>
 
-  <div class="disclaimer">
-    Suspicious-pattern detection is not a definitive fraud determination.
-  </div>
+<p>
+This transaction appears to be an automated debit,
+but it does not match a recognized recurring payment
+pattern in the available demo history.
+</p>
+
+</div>
+
+
+<div class="disclaimer">
+
+This anomaly indicator is NOT a definitive fraud determination.
+
+</div>
 
 </section>
 
@@ -612,62 +928,71 @@ footer {
 
 <section id="action" class="page">
 
-  <h1>Personalized Action Center</h1>
+<h1>Personalized Action Center</h1>
 
-  <div class="card">
+<div class="card">
 
-    <h2>🚨 High Priority</h2>
+<h2>🚨 High Priority</h2>
 
-    <h3>Verify the ₹4,999 transaction</h3>
+<h3>Verify the ₹4,999 transaction</h3>
 
-    <p>
-      Review whether you have an active subscription,
-      EMI, insurance mandate or recurring payment.
-    </p>
+<p>
+Check whether you have an active subscription,
+EMI, insurance mandate or recurring payment.
+</p>
 
-    <button class="action">Review Transaction</button>
+<button class="action">
+Review Transaction
+</button>
 
-  </div>
+</div>
 
-  <div class="card" style="margin-top:15px">
 
-    <h2>📉 Medium Priority</h2>
+<div class="card">
 
-    <h3>Review debt burden</h3>
+<h2>📉 Medium Priority</h2>
 
-    <p>
-      A higher debt-to-income ratio may reduce financial flexibility.
-    </p>
+<h3>Review debt burden</h3>
 
-    <button class="action">Explore Simulator</button>
+<p>
+A higher debt-to-income ratio may reduce
+financial flexibility.
+</p>
 
-  </div>
+<button class="action"
+onclick="showPage('simulator',document.querySelectorAll('nav button')[3])">
+Open Simulator
+</button>
 
-  <div class="card" style="margin-top:15px">
+</div>
 
-    <h2>💰 Low Priority</h2>
 
-    <h3>Continue regular savings</h3>
+<div class="card">
 
-    <p>
-      Consistent saving can support overall financial resilience.
-    </p>
+<h2>💰 Low Priority</h2>
 
-  </div>
+<h3>Continue regular savings</h3>
 
-  <div class="card" style="margin-top:15px">
+<p>
+Continue consistent saving behavior where practical.
+</p>
 
-    <h2>🛡️ Safety Reminder</h2>
+</div>
 
-    <ul>
-      <li>Never share OTP.</li>
-      <li>Never share PIN.</li>
-      <li>Never share CVV.</li>
-      <li>Never share banking passwords.</li>
-      <li>Use official bank support channels.</li>
-    </ul>
 
-  </div>
+<div class="card">
+
+<h2>🛡️ Safety Reminder</h2>
+
+<ul>
+<li>Never share OTP.</li>
+<li>Never share PIN.</li>
+<li>Never share CVV.</li>
+<li>Never share banking passwords.</li>
+<li>Use official bank support channels.</li>
+</ul>
+
+</div>
 
 </section>
 
@@ -676,183 +1001,328 @@ footer {
 
 <section id="privacy" class="page">
 
-  <h1>Privacy & Responsible AI</h1>
+<h1>Privacy & Responsible AI</h1>
 
-  <div class="card">
+<div class="card">
 
-    <h2>Privacy</h2>
+<h2>Privacy</h2>
 
-    <ul>
-      <li>Demo uses synthetic data.</li>
-      <li>No bank credentials are required.</li>
-      <li>No passwords, PINs, OTPs or CVVs are requested.</li>
-      <li>Production systems should use encryption.</li>
-      <li>Production systems should use access controls.</li>
-      <li>Users should be able to correct inaccurate information.</li>
-    </ul>
+<ul>
+<li>Demo uses synthetic data.</li>
+<li>No bank credentials are required.</li>
+<li>No passwords, PINs, OTPs or CVVs are requested.</li>
+<li>Production systems should use encryption.</li>
+<li>Production systems should use access controls.</li>
+<li>Users should be able to correct inaccurate information.</li>
+</ul>
 
-  </div>
+</div>
 
-  <div class="card" style="margin-top:15px">
 
-    <h2>Responsible AI</h2>
+<div class="card">
 
-    <h3>Fairness</h3>
-    <p>Protected characteristics should not be used for scoring.</p>
+<h2>Responsible AI</h2>
 
-    <h3>Explainability</h3>
-    <p>Users should understand the major factors behind results.</p>
+<h3>Fairness</h3>
+<p>
+Protected characteristics should not be used for scoring.
+</p>
 
-    <h3>Human Oversight</h3>
-    <p>FinGuard AI does not replace lenders or banks.</p>
+<h3>Explainability</h3>
+<p>
+Users should understand the main factors behind results.
+</p>
 
-    <h3>Uncertainty</h3>
-    <p>AI outputs are estimates and indicators.</p>
+<h3>Human Oversight</h3>
+<p>
+FinGuard AI does not replace lenders or banks.
+</p>
 
-    <h3>User Control</h3>
-    <p>Users should be able to review and correct information.</p>
+<h3>Uncertainty</h3>
+<p>
+AI outputs are estimates and indicators.
+</p>
 
-  </div>
+<h3>User Control</h3>
+<p>
+Users should be able to review and correct information.
+</p>
 
-  <div class="card" style="margin-top:15px">
+</div>
 
-    <h2>Consent</h2>
 
-    <label>
-      <input type="checkbox" style="width:auto">
-      I consent to analysis of my financial information.
-    </label>
+<div class="card">
 
-  </div>
+<h2>Prototype Limitations</h2>
 
-  <div class="disclaimer">
+<ul>
+<li>Uses synthetic/demo data.</li>
+<li>Credit readiness is only an estimate.</li>
+<li>Transaction anomalies do not prove fraud.</li>
+<li>Alternative data may be incomplete.</li>
+<li>Real deployment requires secure financial-data integration.</li>
+<li>Real deployment requires applicable regulatory compliance.</li>
+<li>Human/lender review remains necessary.</li>
+</ul>
 
-    <b>Limitations:</b>
-
-    <ul>
-      <li>This prototype uses synthetic/demo data.</li>
-      <li>Credit readiness is only an estimate.</li>
-      <li>Transaction anomalies do not prove fraud.</li>
-      <li>Alternative data may be incomplete.</li>
-      <li>Real deployment requires secure financial-data integration.</li>
-      <li>Real deployment requires applicable regulatory compliance.</li>
-      <li>Human/lender review remains necessary.</li>
-    </ul>
-
-  </div>
+</div>
 
 </section>
 
 </main>
 
+
 <footer>
-  FIN GUARD AI © 2026<br>
-  Explainable Financial Intelligence & Protection Platform
+FIN GUARD AI © 2026<br>
+Explainable Financial Intelligence & Protection Platform
 </footer>
+
+</div>
 
 
 <script>
 
-function showPage(pageId, button) {
+function showLogin(){
 
-  document.querySelectorAll(".page")
-    .forEach(page => page.classList.remove("active"));
+document.getElementById("signupPage")
+.classList.add("hidden");
 
-  document.getElementById(pageId)
-    .classList.add("active");
+document.getElementById("loginPage")
+.classList.remove("hidden");
 
-  document.querySelectorAll("nav button")
-    .forEach(btn => btn.classList.remove("active"));
-
-  button.classList.add("active");
-
-  window.scrollTo(0,0);
 }
 
 
-function loadRahul() {
+function showSignup(){
 
-  document.getElementById("score").innerText = "72 / 100";
+document.getElementById("loginPage")
+.classList.add("hidden");
 
-  document.getElementById("creditScore").innerText = "72 / 100";
+document.getElementById("signupPage")
+.classList.remove("hidden");
 
-  alert(
-    "Rahul demo loaded!\n\n" +
-    "Income: ₹60,000\n" +
-    "EMI consistency: 100%\n" +
-    "Utility consistency: 96%\n" +
-    "Credit history: Limited"
-  );
 }
 
 
-function simulate() {
+function signup(){
 
-  let debt =
-    Number(document.getElementById("debt").value);
+let name=
+document.getElementById("signupName").value;
 
-  let savings =
-    Number(document.getElementById("savings").value);
+let email=
+document.getElementById("signupEmail").value;
 
-  let payment =
-    Number(document.getElementById("payment").value);
+let password=
+document.getElementById("signupPassword").value;
 
-  document.getElementById("debtValue").innerText =
-    "₹" + debt.toLocaleString("en-IN");
+let consent=
+document.getElementById("consent").checked;
 
-  document.getElementById("savingValue").innerText =
-    savings + "%";
+if(!name || !email || !password){
 
-  document.getElementById("paymentValue").innerText =
-    payment + "%";
+alert("Please fill all fields.");
 
-  let score = 72;
+return;
 
-  if (debt < 15000)
-    score += 5;
+}
 
-  if (debt > 20000)
-    score -= 5;
+if(!consent){
 
-  if (savings > 25)
-    score += 3;
+alert("Please accept the demo privacy notice.");
 
-  if (savings < 10)
-    score -= 3;
+return;
 
-  if (payment > 95)
-    score += 3;
+}
 
-  if (payment < 80)
-    score -= 5;
+localStorage.setItem("fg_name",name);
+localStorage.setItem("fg_email",email);
+localStorage.setItem("fg_password",password);
 
-  score = Math.max(0, Math.min(100, score));
+alert("Demo account created successfully!");
 
-  document.getElementById("projected").innerText =
-    score + " / 100";
+showLogin();
 
-  let difference = score - 72;
+}
 
-  if (difference > 0) {
 
-    document.getElementById("changeText").innerText =
-      "Estimated readiness increased by " +
-      difference +
-      " points in this illustrative scenario.";
+function login(){
 
-  } else if (difference < 0) {
+let email=
+document.getElementById("loginEmail").value;
 
-    document.getElementById("changeText").innerText =
-      "Estimated readiness decreased by " +
-      Math.abs(difference) +
-      " points in this illustrative scenario.";
+let password=
+document.getElementById("loginPassword").value;
 
-  } else {
+let savedEmail=
+localStorage.getItem("fg_email");
 
-    document.getElementById("changeText").innerText =
-      "No estimated change from the baseline scenario.";
+let savedPassword=
+localStorage.getItem("fg_password");
 
-  }
+if(email===savedEmail && password===savedPassword){
+
+openApp();
+
+}else{
+
+alert("Login failed. Use your demo account or tap Enter Demo.");
+
+}
+
+}
+
+
+function demoLogin(){
+
+localStorage.setItem("fg_name","Demo User");
+
+openApp();
+
+}
+
+
+function openApp(){
+
+document.getElementById("loginPage")
+.classList.add("hidden");
+
+document.getElementById("signupPage")
+.classList.add("hidden");
+
+document.getElementById("app")
+.classList.remove("hidden");
+
+let name=
+localStorage.getItem("fg_name") || "Demo User";
+
+document.getElementById("userName").innerText=name;
+
+}
+
+
+function logout(){
+
+document.getElementById("app")
+.classList.add("hidden");
+
+document.getElementById("loginPage")
+.classList.remove("hidden");
+
+}
+
+
+function showPage(pageId,button){
+
+document.querySelectorAll(".page")
+.forEach(page=>{
+page.classList.remove("active");
+});
+
+document.getElementById(pageId)
+.classList.add("active");
+
+document.querySelectorAll("nav button")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+if(button){
+button.classList.add("active");
+}
+
+window.scrollTo(0,0);
+
+}
+
+
+function loadRahul(){
+
+document.getElementById("dashScore")
+.innerText="72 / 100";
+
+document.getElementById("creditScore")
+.innerText="72 / 100";
+
+alert(
+"Rahul Demo Loaded\n\n"+
+"Income: ₹60,000\n"+
+"EMI consistency: 100%\n"+
+"Utility consistency: 96%\n"+
+"Credit history: Limited"
+);
+
+}
+
+
+function simulate(){
+
+let debt=
+Number(document.getElementById("debt").value);
+
+let savings=
+Number(document.getElementById("savings").value);
+
+let payment=
+Number(document.getElementById("payment").value);
+
+document.getElementById("debtValue")
+.innerText="₹"+debt.toLocaleString("en-IN");
+
+document.getElementById("savingValue")
+.innerText=savings+"%";
+
+document.getElementById("paymentValue")
+.innerText=payment+"%";
+
+let score=72;
+
+if(debt<15000) score+=5;
+
+if(debt>20000) score-=5;
+
+if(savings>25) score+=3;
+
+if(savings<10) score-=3;
+
+if(payment>95) score+=3;
+
+if(payment<80) score-=5;
+
+score=Math.max(0,Math.min(100,score));
+
+document.getElementById("projected")
+.innerText=score+" / 100";
+
+let difference=score-72;
+
+if(difference>0){
+
+document.getElementById("changeText")
+.innerText=
+"Estimated readiness increased by "+
+difference+
+" points in this illustrative scenario.";
+
+}
+
+else if(difference<0){
+
+document.getElementById("changeText")
+.innerText=
+"Estimated readiness decreased by "+
+Math.abs(difference)+
+" points in this illustrative scenario.";
+
+}
+
+else{
+
+document.getElementById("changeText")
+.innerText=
+"No estimated change from the baseline scenario.";
+
+}
+
 }
 
 </script>
